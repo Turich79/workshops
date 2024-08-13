@@ -30,7 +30,9 @@ public final class Gateway {
     }
 
     // BEGIN (write your solution here)
+    public static void findAll() {
 
+    }
     // END
 }
 
