@@ -7,6 +7,37 @@ import java.util.stream.IntStream;
 
 public class Main {
     public static void main(String[] args) {
+//        app();
+        app2();
+    }
+
+    public static void app2() {
+        // Пустой список на входе
+        Map<Integer, Map<Integer, Double>> result1 = calculateProbabilities2(new ArrayList<Integer>());
+        System.out.println(result1); // => {}
+
+        Map<Integer, Map<Integer, Double>> result2 = calculateProbabilities2(
+                List.of(1, 3, 1, 5, 1, 2, 1, 6)
+        );
+        System.out.println(result2);
+        // => {1={2=0.25, 3=0.25, 5=0.25, 6=0.25}, 2={1=1.0}, 3={1=1.0}, 5={1=1.0}, 6={}}
+    }
+
+    public static Map<Integer, Map<Integer, Double>> calculateProbabilities2(List<Integer> numbers) {
+        ////вариант второй, пытаюсь прикрутить стримы
+        Map<Integer, Map<Integer, Double>> map = new HashMap<>();
+        if (numbers.isEmpty()) {
+            return map;
+        }
+        var set = numbers.stream().distinct().collect(Collectors.toSet());
+        System.out.println(set);
+
+
+
+        return map;
+    }
+
+    public static void app() {
         // Пустой список на входе
         Map<Integer, Map<Integer, Double>> result1 = calculateProbabilities(new ArrayList<Integer>());
         System.out.println(result1); // => {}
@@ -16,10 +47,10 @@ public class Main {
         );
         System.out.println(result2);
         // => {1={2=0.25, 3=0.25, 5=0.25, 6=0.25}, 2={1=1.0}, 3={1=1.0}, 5={1=1.0}, 6={}}
-
     }
 
     public static Map<Integer, Map<Integer, Double>> calculateProbabilities(List<Integer> numbers) {
+        ////первый вариант, рабочий, но практически без стримов
         Map<Integer, Map<Integer, Double>> map = new HashMap<>();
         if (numbers.isEmpty()) {
             return map;
@@ -75,7 +106,7 @@ public class Main {
                 ));
     }
 
-    public static Map<Integer, Map<Integer, Double>> calculateProbabilities2(List<Integer> droppedNumbers) {
+    public static Map<Integer, Map<Integer, Double>> calculateProbabilities_(List<Integer> droppedNumbers) {
         return droppedNumbers.stream()
                 .distinct()
                 .collect(Collectors.toMap(
