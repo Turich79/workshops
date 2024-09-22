@@ -1,5 +1,6 @@
 plugins {
     id("java")
+    id("io.freefair.lombok") version "8.4"
 }
 
 group = "hexlet.io"
@@ -10,8 +11,10 @@ repositories {
 }
 
 dependencies {
+    implementation("com.h2database:h2:2.2.220")
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
+    testImplementation("org.assertj:assertj-core:3.22.0")
 }
 
 tasks.test {
