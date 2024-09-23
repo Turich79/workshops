@@ -57,8 +57,8 @@ public class CarDAO {
                 "users.id AS owner_id," +
                 "users.first_name AS first_name," +
                 "users.last_name AS last_name," +
-                "users.adress AS adress" +
-                " FROM cars INNER JOIN users ON cars.user_id=users.id" +
+                "users.address AS address " +
+                "FROM cars INNER JOIN users ON cars.user_id=users.id " +
                 "WHERE number = ?";
         try (var stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, number);
@@ -71,8 +71,8 @@ public class CarDAO {
                 var owner_id = resultSet.getLong("owner_id");
                 var first_name = resultSet.getString("first_name");
                 var last_name = resultSet.getString("last_name");
-                var adress = resultSet.getString("adress");
-                var user = new User(first_name, last_name, adress);
+                var address = resultSet.getString("address");
+                var user = new User(first_name, last_name, address);
                 user.setId(owner_id);
                 var car = new Car(made, model, number, color);
                 car.setOwner(user);
